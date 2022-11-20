@@ -4,7 +4,7 @@ import numpy as np
 
 from .utils import calculate_ao, calculate_sma, calculate_smma, mad
 
-__version__ = "1.9.2"
+__version__ = "1.9.4"
 
 
 class Indicators:
@@ -536,7 +536,7 @@ class Indicators:
         ---------
             https://www.metatrader4.com/en/trading-platform/help/analytics/tech_indicators/fractals
 
-            >>> Indicators.fractals(column_name_high='fractals3_high', column_name_low='fractals3_low')
+            >>> Indicators.fractals3(column_name_high='fractals3_high', column_name_low='fractals3_low')
 
             :param str column_name_high: Column name for High values, default: fractals3_high
             :param str column_name_low: Column name for Low values, default: fractals3_low
@@ -593,8 +593,104 @@ class Indicators:
                 False,
             )
         )
-        df_tmp = df_tmp[["fh3", "fl3"]]
-        df_tmp = df_tmp.rename(columns={"fh3": column_name_high, "fl3": column_name_low})
+        df_tmp = df_tmp[["fh", "fl"]]
+        df_tmp = df_tmp.rename(columns={"fh": column_name_high, "fl": column_name_low})
+        self.df = self.df.merge(df_tmp, left_index=True, right_index=True)
+
+    def fractals5(
+        self, column_name_high="fractals5_high", column_name_low="fractals5_low"
+    ):
+        """
+        Fractals 5
+        ---------
+            https://www.metatrader4.com/en/trading-platform/help/analytics/tech_indicators/fractals
+
+            >>> Indicators.fractals5(column_name_high='fractals5_high', column_name_low='fractals5_low')
+
+            :param str column_name_high: Column name for High values, default: fractals5_high
+            :param str column_name_low: Column name for Low values, default: fractals5_low
+            :return: None
+        """
+        df_tmp = self.df[[self._columns["High"], self._columns["Low"]]]
+        df_tmp = df_tmp.assign(
+            fh=np.where(
+                (
+                    df_tmp[self._columns["High"]] 
+                    > df_tmp[self._columns["High"]].shift(1)
+                    )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(2)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(3)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(4)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(5)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-1)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-2)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-3)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-4)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-5)
+                ),
+                True,
+                False,
+            )
+        )
+        df_tmp = df_tmp.assign(
+            fl=np.where(
+                (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(1))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(2))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(3))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(4))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(5))
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-1)
+                )  
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-2)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-3)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-4)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-5)
+                ),
+                True,
+                False,
+            )
+        )
+        df_tmp = df_tmp[["fh", "fl"]]
+        df_tmp = df_tmp.rename(columns={"fh": column_name_high, "fl": column_name_low})
         self.df = self.df.merge(df_tmp, left_index=True, right_index=True)
 
     def gator(
