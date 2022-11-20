@@ -1,4 +1,4 @@
-version := $(shell python -c 'from jgtapy import __version__; print(__version__)')
+version := $(shell python3 -c 'from jgtapy import __version__; print(__version__)')
 
 .PHONY: venv
 venv:

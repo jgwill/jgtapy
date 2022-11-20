@@ -4,7 +4,7 @@ import numpy as np
 
 from .utils import calculate_ao, calculate_sma, calculate_smma, mad
 
-__version__ = "1.9.5"
+__version__ = "1.9.7"
 
 
 class Indicators:
@@ -2374,3 +2374,107 @@ class Indicators:
         )
 
         self.df = self.df.merge(df_tmp, left_index=True, right_index=True)
+        
+        
+    def pds_add_ohlc_stc_columns(__df,
+                       cleanupOriginalColumn=True,quiet=True):
+        if not 'Open' in __df.columns:
+            __df['Open'] = __df[['BidOpen', 'AskOpen']].mean(axis=1)
+            __df['High'] = __df[['BidHigh', 'AskHigh']].mean(axis=1)
+            __df['Low'] = __df[['BidLow', 'AskLow']].mean(axis=1)
+            __df['Close'] = __df[['BidClose', 'AskClose']].mean(axis=1)
+            #Median
+            __df['Median']= ((__df['High'] + __df['Low']) / 2)
+        if cleanupOriginalColumn:
+            __df=Indicators.__cleanse_original_columns(__df,quiet)
+        return __df
+
+
+    def __cleanse_original_columns(__df,_quiet=True):
+        __df=Indicators.pds_cleanse_original_columns(__df,_quiet)
+        return __df
+
+    def pds_cleanse_original_columns(__df,_quiet=True):
+        __df=Indicators.jgtpd_drop_col_by_name(__df,'AskHigh',1,_quiet)
+        __df=Indicators.jgtpd_drop_col_by_name(__df,'BidHigh',1,_quiet)
+        __df=Indicators.jgtpd_drop_col_by_name(__df,'AskLow',1,_quiet)
+        __df=Indicators.jgtpd_drop_col_by_name(__df,'BidLow',1,_quiet)
+        __df=Indicators.jgtpd_drop_col_by_name(__df,'AskClose',1,_quiet)
+        __df=Indicators.jgtpd_drop_col_by_name(__df,'BidClose',1,_quiet)
+        __df=Indicators.jgtpd_drop_col_by_name(__df,'BidOpen',1,_quiet)
+        __df=Indicators.jgtpd_drop_col_by_name(__df,'AskOpen',1,_quiet)
+        return __df
+
+    def jgtpd_drop_col_by_name(_df,colname,_axis = 1,_quiet=False):
+        """Drop Column in DF by Name
+
+        Args:
+                _df (DataFrame source)
+                ctxcolname (column name from)
+                _axis (  axis)
+                _quiet (quiet output)
+                
+        Returns:
+            Clean DataFrame 
+        """
+        if colname in _df.columns:
+            return _df.drop(_df.loc[:, colname:colname].columns,axis = _axis)
+        else:
+            if not _quiet:
+                print('Col:' + colname + ' was not there')
+            return _df
+
+
+
+    def jgt_create_ids_indicators_as_instance(__df,
+                       enableGatorOscillator=False,
+                       enableMFI=False,
+                       cleanupOriginalColumn=True,
+                       quiet=False):
+        if not quiet:
+            print("Adding indicators...")
+        # if not 'pen' in self.df.columns:
+        #     __df=__.rename(columns={'bidopen': 'BidOpen', 'bidhigh': 'BidHigh','bidclose':'BidClose','bidlow':'BidLow','askopen': 'AskOpen', 'askhigh': 'AskHigh','askclose':'AskClose','asklow':'AskLow','tickqty':'Volume','date':'Date'})
+        __df=Indicators.pds_add_ohlc_stc_columns(__df,cleanupOriginalColumn)
+        i=Indicators(__df)
+        i.accelerator_oscillator( column_name= 'ac')
+        i.alligator(period_jaws=13, period_teeth=8, period_lips=5, shift_jaws=8, shift_teeth=5, shift_lips=3, column_name_jaws='jaw', column_name_teeth='teeth', column_name_lips='lips')
+        i.alligator(period_jaws=89, period_teeth=55, period_lips=34, shift_jaws=55, shift_teeth=34, shift_lips=21, column_name_jaws='bjaw', column_name_teeth='bteeth', column_name_lips='blips')
+        i.awesome_oscillator(column_name='ao')
+        i.fractals(column_name_high='fb', column_name_low='fs')
+        i.fractals3(column_name_high='fb3', column_name_low='fs3')
+        i.fractals5(column_name_high='fb5', column_name_low='fs5')
+        i.fractals8(column_name_high='fb8', column_name_low='fs8')
+        i.fractals13(column_name_high='fb13', column_name_low='fs13')
+        i.fractals21(column_name_high='fb21', column_name_low='fs21')
+        i.fractals34(column_name_high='fb34', column_name_low='fs34')
+        i.fractals55(column_name_high='fb55', column_name_low='fs55')
+        i.fractals89(column_name_high='fb89', column_name_low='fs89')
+        
+        if enableGatorOscillator:
+            i.gator(period_jaws=13, period_teeth=8, period_lips=5, shift_jaws=8, shift_teeth=5, shift_lips=3, column_name_val1='gl', column_name_val2='gh')
+        if enableMFI:
+            i.bw_mfi(column_name='mfi')
+        return i
+    
+    def jgt_create_ids_indicators_as_dataframe(__df,
+                       enableGatorOscillator=False,
+                       enableMFI=False,
+                       cleanupOriginalColumn=True,
+                       dropnavalue=True,
+                       quiet=False):        
+        i=Indicators.jgt_create_ids_indicators_as_instance(__df,
+                       enableGatorOscillator,
+                       enableMFI,                          
+                       cleanupOriginalColumn,                    
+                       quiet)
+        _df=i.df
+        if dropnavalue:
+            _df = _df.dropna()
+        try: 
+            _df=_df.set_index('Date')
+        except TypeError:
+            pass
+        if not quiet:
+            print("done adding indicators :)")
+        return _df

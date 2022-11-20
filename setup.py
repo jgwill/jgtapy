@@ -34,7 +34,7 @@ setup(
     long_description=open('README.rst').read(),
     author='Dmitrii Kurlov/+JG',
     author_email='dmitriik@tutanota.com',
-    url='https://github.com/dmitriiweb/tapy',
+    url='https://github.com/jgwill/jgtapy',
     packages=find_packages(exclude=['*test*']),
     install_requires=INSTALL_REQUIRES,
     extras_require={
