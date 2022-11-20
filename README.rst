@@ -1,4 +1,4 @@
-tapy
+jgtapy
 ====
 
 Technical Indicators for the Pandas' Dataframes
@@ -10,7 +10,7 @@ Installation
 
 ::
 
-    pip install -U tapy
+    pip install -U jgtapy
 
 Example
 -------
@@ -49,7 +49,7 @@ Available Indicators
 10. DeMarker (DeM)
 11. Exponential Moving Average (EMA)
 12. Force Index (FRC)
-13. Fractals
+13. Fractals(2/3 dimensions)
 14. Gator Oscillator
 15. Ichimoku Kinko Hyo
 16. Market Facilitation Index (BW MFI)

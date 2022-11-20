@@ -4,7 +4,7 @@ import numpy as np
 
 from .utils import calculate_ao, calculate_sma, calculate_smma, mad
 
-__version__ = "1.9.1"
+__version__ = "1.9.2"
 
 
 class Indicators:

@@ -1,16 +1,16 @@
-.. tapy documentation master file, created by
+.. jgtapy documentation master file, created by
    sphinx-quickstart on Mon Sep 23 02:03:02 2019.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to tapy's documentation!
+Welcome to jgtapy's documentation!
 ================================
 
-:Source Code: https://github.com/dmitriiweb/tapy
-:Issue Tracker: https://github.com/dmitriiweb/tapy/issues
-:PyPi: https://pypi.org/project/tapy/
+:Source Code: https://github.com/jgwill/jgtapy
+:Issue Tracker: https://github.com/jgwill/jgtapy/issues
+:PyPi: https://pypi.org/project/jgtapy/
 
-.. automodule:: tapy
+.. automodule:: jgtapy
    :members: __doc__
 
 .. toctree::
@@ -23,31 +23,31 @@ Installation
 ============
 ::
 
-   pip install tapy
+   pip install jgtapy
 
 Indicators
 ==========
-.. autoclass:: tapy.Indicators
+.. autoclass:: jgtapy.Indicators
 .. automodule:: __init__
 
-.. automodule:: tapy.Indicators.accelerator_oscillator
-.. automodule:: tapy.Indicators.accumulation_distribution
-.. automodule:: tapy.Indicators.alligator
-.. automodule:: tapy.Indicators.atr
-.. automodule:: tapy.Indicators.awesome_oscillator
-.. automodule:: tapy.Indicators.bears_power
-.. automodule:: tapy.Indicators.bollinger_bands
-.. automodule:: tapy.Indicators.bulls_power
-.. automodule:: tapy.Indicators.cci
-.. automodule:: tapy.Indicators.de_marker
-.. automodule:: tapy.Indicators.ema
-.. automodule:: tapy.Indicators.force_index
-.. automodule:: tapy.Indicators.fractals
-.. automodule:: tapy.Indicators.gator
-.. automodule:: tapy.Indicators.ichimoku_kinko_hyo
-.. automodule:: tapy.Indicators.bw_mfi
-.. automodule:: tapy.Indicators.momentum
-.. automodule:: tapy.Indicators.mfi
-.. automodule:: tapy.Indicators.macd
-.. automodule:: tapy.Indicators.sma
-.. automodule:: tapy.Indicators.smma
+.. automodule:: jgtapy.Indicators.accelerator_oscillator
+.. automodule:: jgtapy.Indicators.accumulation_distribution
+.. automodule:: jgtapy.Indicators.alligator
+.. automodule:: jgtapy.Indicators.atr
+.. automodule:: jgtapy.Indicators.awesome_oscillator
+.. automodule:: jgtapy.Indicators.bears_power
+.. automodule:: jgtapy.Indicators.bollinger_bands
+.. automodule:: jgtapy.Indicators.bulls_power
+.. automodule:: jgtapy.Indicators.cci
+.. automodule:: jgtapy.Indicators.de_marker
+.. automodule:: jgtapy.Indicators.ema
+.. automodule:: jgtapy.Indicators.force_index
+.. automodule:: jgtapy.Indicators.fractals
+.. automodule:: jgtapy.Indicators.gator
+.. automodule:: jgtapy.Indicators.ichimoku_kinko_hyo
+.. automodule:: jgtapy.Indicators.bw_mfi
+.. automodule:: jgtapy.Indicators.momentum
+.. automodule:: jgtapy.Indicators.mfi
+.. automodule:: jgtapy.Indicators.macd
+.. automodule:: jgtapy.Indicators.sma
+.. automodule:: jgtapy.Indicators.smma

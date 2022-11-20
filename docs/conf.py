@@ -13,12 +13,12 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath('../'))
-from tapy import __version__
+from jgtapy import __version__
 autodoc_mock_imports = ['pandas']
 
 # -- Project information -----------------------------------------------------
 
-project = 'tapy'
+project = 'jgtapy'
 copyright = '2019, Dmitrii Kurlov'
 author = 'Dmitrii Kurlov'
 
