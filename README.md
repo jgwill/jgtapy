@@ -11,10 +11,12 @@ pip install -U jgtapy
 ## Example
 ```
 >>> import pandas as pd
->>> from tapy import Indicators
+>>> from jgtapy import Indicators
 >>> df = pd.read_csv('EURUSD60.csv')
 >>> i= Indicators(df)
->>> i.accelerator_oscillator(column_name='AC')
+>>> i.accelerator_oscillator(column_name='AC'
+>>> i.fractals(column_name_high='fb', column_name_low='fs')
+>>> i.fractals3(column_name_high='fb3', column_name_low='fs3')
 >>> i.sma()
 >>> df = i.df
 >>> df.tail()
@@ -40,7 +42,7 @@ pip install -U jgtapy
 10. DeMarker (DeM)
 11. Exponential Moving Average (EMA)
 12. Force Index (FRC)
-13. Fractals
+13. Fractals (dimension 2 and 3)
 14. Gator Oscillator
 15. Ichimoku Kinko Hyo
 16. Market Facilitation Index (BW MFI)
