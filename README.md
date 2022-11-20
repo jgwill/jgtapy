@@ -1,3 +1,5 @@
+[![Upload Python Package](https://github.com/jgwill/jgtapy/actions/workflows/python-publish.yml/badge.svg)](https://github.com/jgwill/jgtapy/actions/workflows/python-publish.yml)
+
 # jgtapy
 Technical Indicators for the Pandas' Dataframes
 
