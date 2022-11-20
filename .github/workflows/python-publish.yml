@@ -33,8 +33,9 @@ jobs:
     # - name: Build package
     #   run: python -m build
     - name: Build package
-    run: bash build-n-release.sh
-       with:
+      run:  |
+        bash build-n-release.sh
+      with:
         user: __token__
         password: ${{ secrets.PYPI_API_TOKEN }}
     # - name: Publish package
