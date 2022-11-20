@@ -22,6 +22,7 @@ pip install -U jgtapy
 >>> i.fractals(column_name_high='fb', column_name_low='fs')
 >>> i.fractals3(column_name_high='fb3', column_name_low='fs3')
 >>> i.fractals5(column_name_high='fb5', column_name_low='fs5')
+>>> ... 8,13,21,34,55,89
 >>> i.sma()
 >>> df = i.df
 >>> df.tail()
@@ -47,7 +48,7 @@ pip install -U jgtapy
 10. DeMarker (DeM)
 11. Exponential Moving Average (EMA)
 12. Force Index (FRC)
-13. Fractals (dimension 2, 3 and 5)
+13. Fractals (dimension 2,3,5,8,13,21,34,55,89)
 14. Gator Oscillator
 15. Ichimoku Kinko Hyo
 16. Market Facilitation Index (BW MFI)

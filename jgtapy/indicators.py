@@ -693,6 +693,1409 @@ class Indicators:
         df_tmp = df_tmp.rename(columns={"fh": column_name_high, "fl": column_name_low})
         self.df = self.df.merge(df_tmp, left_index=True, right_index=True)
 
+    def fractals8(
+        self, column_name_high="fractals8_high", column_name_low="fractals8_low"
+    ):
+        """
+        Fractals 8
+        ---------
+            https://www.metatrader4.com/en/trading-platform/help/analytics/tech_indicators/fractals
+
+            >>> Indicators.fractals8(column_name_high='fractals8_high', column_name_low='fractals8_low')
+
+            :param str column_name_high: Column name for High values, default: fractals8_high
+            :param str column_name_low: Column name for Low values, default: fractals8_low
+            :return: None
+        """
+        df_tmp = self.df[[self._columns["High"], self._columns["Low"]]]
+        df_tmp = df_tmp.assign(
+            fh=np.where(
+                (
+                    df_tmp[self._columns["High"]] 
+                    > df_tmp[self._columns["High"]].shift(1)
+                    )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(2)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(3)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(4)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(5)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(6)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(7)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(8)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-1)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-2)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-3)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-4)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-5)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-6)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-7)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-8)
+                ),
+                True,
+                False,
+            )
+        )
+        df_tmp = df_tmp.assign(
+            fl=np.where(
+                (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(1))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(2))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(3))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(4))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(5))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(6))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(7))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(8))
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-1)
+                )  
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-2)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-3)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-4)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-5)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-6)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-7)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-8)
+                ),
+                True,
+                False,
+            )
+        )
+        df_tmp = df_tmp[["fh", "fl"]]
+        df_tmp = df_tmp.rename(columns={"fh": column_name_high, "fl": column_name_low})
+        self.df = self.df.merge(df_tmp, left_index=True, right_index=True)
+
+
+    def fractals13(
+        self, column_name_high="fractals13_high", column_name_low="fractals13_low"
+    ):
+        """
+        Fractals 13
+        ---------
+            https://www.metatrader4.com/en/trading-platform/help/analytics/tech_indicators/fractals
+
+            >>> Indicators.fractals13(column_name_high='fractals13_high', column_name_low='fractals13_low')
+
+            :param str column_name_high: Column name for High values, default: fractals13_high
+            :param str column_name_low: Column name for Low values, default: fractals13_low
+            :return: None
+        """
+        df_tmp = self.df[[self._columns["High"], self._columns["Low"]]]
+        df_tmp = df_tmp.assign(
+            fh=np.where(
+                (
+                    df_tmp[self._columns["High"]] 
+                    > df_tmp[self._columns["High"]].shift(1)
+                    )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(2)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(3)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(4)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(5)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(6)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(7)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(8)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(9)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(10)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(11)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(12)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(13)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-1)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-2)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-3)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-4)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-5)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-6)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-7)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-8)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-9)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-10)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-11)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-12)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-13)
+                ),
+                True,
+                False,
+            )
+        )
+        df_tmp = df_tmp.assign(
+            fl=np.where(
+                (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(1))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(2))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(3))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(4))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(5))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(6))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(7))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(8))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(9))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(10))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(11))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(12))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(13))
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-1)
+                )  
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-2)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-3)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-4)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-5)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-6)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-7)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-8)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-9)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-10)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-11)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-12)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-13)
+                ),
+                True,
+                False,
+            )
+        )
+        df_tmp = df_tmp[["fh", "fl"]]
+        df_tmp = df_tmp.rename(columns={"fh": column_name_high, "fl": column_name_low})
+        self.df = self.df.merge(df_tmp, left_index=True, right_index=True)
+
+
+    def fractals21(
+        self, column_name_high="fractals21_high", column_name_low="fractals21_low"
+    ):
+        """
+        Fractals 21
+        ---------
+            https://www.metatrader4.com/en/trading-platform/help/analytics/tech_indicators/fractals
+
+            >>> Indicators.fractals21(column_name_high='fractals21_high', column_name_low='fractals21_low')
+
+            :param str column_name_high: Column name for High values, default: fractals21_high
+            :param str column_name_low: Column name for Low values, default: fractals21_low
+            :return: None
+        """
+        df_tmp = self.df[[self._columns["High"], self._columns["Low"]]]
+        df_tmp = df_tmp.assign(
+            fh=np.where(
+                (
+                    df_tmp[self._columns["High"]] 
+                    > df_tmp[self._columns["High"]].shift(1)
+                    )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(2)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(3)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(4)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(5)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(6)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(7)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(8)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(9)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(10)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(11)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(12)
+                )
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(13))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(14))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(15))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(16))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(17))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(18))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(19))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(20))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(21))
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-1)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-2)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-3)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-4)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-5)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-6)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-7)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-8)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-9)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-10)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-11)
+                )
+                & (
+                    df_tmp[self._columns["High"]]
+                    > df_tmp[self._columns["High"]].shift(-12)
+                )
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-13))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-14))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-15))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-16))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-17))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-18))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-19))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-20))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-21))
+                ,
+                True,
+                False,
+            )
+        )
+        df_tmp = df_tmp.assign(
+            fl=np.where(
+                (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(1))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(2))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(3))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(4))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(5))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(6))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(7))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(8))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(9))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(10))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(11))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(12))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(13))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(14))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(15))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(16))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(17))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(18))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(19))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(20))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(21))
+                & ( df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-1) )  
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-2)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-3)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-4)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-5)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-6)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-7)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-8)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-9)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-10)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-11)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-12)
+                )
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-13))
+
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-14))
+
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-15))
+
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-16))
+
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-17))
+
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-18))
+
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-19))
+
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-20))
+
+                & (
+                    df_tmp[self._columns["Low"]]
+                    < df_tmp[self._columns["Low"]].shift(-21))
+                ,
+                True,
+                False,
+            )
+        )
+        df_tmp = df_tmp[["fh", "fl"]]
+        df_tmp = df_tmp.rename(columns={"fh": column_name_high, "fl": column_name_low})
+        self.df = self.df.merge(df_tmp, left_index=True, right_index=True)
+
+
+
+    def fractals34(
+        self, column_name_high="fractals34_high", column_name_low="fractals34_low"
+    ):
+        """
+        Fractals 34
+        ---------
+            https://www.metatrader4.com/en/trading-platform/help/analytics/tech_indicators/fractals
+
+            >>> Indicators.fractals34(column_name_high='fractals34_high', column_name_low='fractals34_low')
+
+            :param str column_name_high: Column name for High values, default: fractals34_high
+            :param str column_name_low: Column name for Low values, default: fractals34_low
+            :return: None
+        """
+        df_tmp = self.df[[self._columns["High"], self._columns["Low"]]]
+        df_tmp = df_tmp.assign(
+            fh=np.where(
+                (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(1))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(2))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(3))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(4))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(5))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(6))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(7))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(8))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(9))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(10))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(11))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(12))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(13))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(14))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(15))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(16))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(17))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(18))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(19))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(20))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(21))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(22))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(23))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(24))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(25))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(26))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(27))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(28))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(29))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(30))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(31))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(32))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(33))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(34))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-1))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-2))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-3))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-4))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-5))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-6))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-7))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-8))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-9))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-10))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-11))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-12))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-13))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-14))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-15))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-16))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-17))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-18))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-19))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-20))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-21))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-22))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-23))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-24))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-25))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-26))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-27))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-28))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-29))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-30))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-31))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-32))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-33))
+                    & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-34))
+                ,
+                True,
+                False,
+            )
+        )
+        df_tmp = df_tmp.assign(
+            fl=np.where(
+               (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(1))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(2))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(3))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(4))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(5))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(6))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(7))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(8))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(9))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(10))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(11))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(12))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(13))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(14))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(15))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(16))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(17))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(18))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(19))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(20))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(21))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(22))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(23))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(24))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(25))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(26))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(27))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(28))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(29))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(30))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(31))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(32))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(33))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(34))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-1))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-2))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-3))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-4))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-5))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-6))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-7))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-8))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-9))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-10))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-11))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-12))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-13))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-14))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-15))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-16))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-17))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-18))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-19))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-20))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-21))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-22))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-23))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-24))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-25))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-26))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-27))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-28))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-29))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-30))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-31))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-32))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-33))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-34))
+                ,
+                True,
+                False,
+            )
+        )
+        df_tmp = df_tmp[["fh", "fl"]]
+        df_tmp = df_tmp.rename(columns={"fh": column_name_high, "fl": column_name_low})
+        self.df = self.df.merge(df_tmp, left_index=True, right_index=True)
+
+
+
+    def fractals55(
+        self, column_name_high="fractals55_high", column_name_low="fractals55_low"
+    ):
+        """
+        Fractals 55
+        ---------
+            https://www.metatrader4.com/en/trading-platform/help/analytics/tech_indicators/fractals
+
+            >>> Indicators.fractals55(column_name_high='fractals55_high', column_name_low='fractals55_low')
+
+            :param str column_name_high: Column name for High values, default: fractals55_high
+            :param str column_name_low: Column name for Low values, default: fractals55_low
+            :return: None
+        """
+        df_tmp = self.df[[self._columns["High"], self._columns["Low"]]]
+        df_tmp = df_tmp.assign(
+            fh=np.where(
+              (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(1))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(2))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(3))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(4))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(5))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(6))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(7))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(8))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(9))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(10))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(11))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(12))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(13))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(14))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(15))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(16))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(17))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(18))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(19))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(20))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(21))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(22))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(23))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(24))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(25))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(26))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(27))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(28))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(29))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(30))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(31))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(32))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(33))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(34))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(35))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(36))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(37))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(38))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(39))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(40))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(41))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(42))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(43))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(44))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(45))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(46))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(47))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(48))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(49))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(50))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(51))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(52))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(53))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(54))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(55))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-1))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-2))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-3))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-4))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-5))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-6))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-7))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-8))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-9))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-10))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-11))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-12))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-13))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-14))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-15))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-16))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-17))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-18))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-19))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-20))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-21))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-22))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-23))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-24))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-25))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-26))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-27))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-28))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-29))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-30))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-31))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-32))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-33))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-34))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-35))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-36))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-37))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-38))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-39))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-40))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-41))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-42))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-43))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-44))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-45))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-46))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-47))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-48))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-49))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-50))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-51))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-52))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-53))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-54))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-55))                    
+                ,
+                True,
+                False,
+            )
+        )
+        df_tmp = df_tmp.assign(
+            fl=np.where(             
+                (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(1))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(2))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(3))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(4))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(5))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(6))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(7))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(8))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(9))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(10))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(11))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(12))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(13))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(14))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(15))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(16))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(17))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(18))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(19))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(20))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(21))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(22))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(23))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(24))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(25))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(26))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(27))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(28))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(29))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(30))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(31))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(32))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(33))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(34))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(35))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(36))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(37))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(38))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(39))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(40))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(41))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(42))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(43))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(44))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(45))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(46))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(47))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(48))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(49))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(50))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(51))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(52))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(53))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(54))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(55))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-1))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-2))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-3))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-4))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-5))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-6))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-7))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-8))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-9))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-10))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-11))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-12))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-13))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-14))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-15))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-16))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-17))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-18))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-19))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-20))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-21))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-22))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-23))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-24))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-25))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-26))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-27))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-28))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-29))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-30))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-31))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-32))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-33))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-34))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-35))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-36))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-37))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-38))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-39))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-40))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-41))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-42))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-43))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-44))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-45))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-46))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-47))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-48))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-49))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-50))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-51))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-52))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-53))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-54))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-55))
+                ,
+                True,
+                False,
+            )
+        )
+        df_tmp = df_tmp[["fh", "fl"]]
+        df_tmp = df_tmp.rename(columns={"fh": column_name_high, "fl": column_name_low})
+        self.df = self.df.merge(df_tmp, left_index=True, right_index=True)
+
+
+
+    def fractals89(
+        self, column_name_high="fractals89_high", column_name_low="fractals89_low"
+    ):
+        """
+        Fractals 89
+        ---------
+            https://www.metatrader4.com/en/trading-platform/help/analytics/tech_indicators/fractals
+
+            >>> Indicators.fractals89(column_name_high='fractals89_high', column_name_low='fractals89_low')
+
+            :param str column_name_high: Column name for High values, default: fractals89_high
+            :param str column_name_low: Column name for Low values, default: fractals89_low
+            :return: None
+        """
+        df_tmp = self.df[[self._columns["High"], self._columns["Low"]]]
+        df_tmp = df_tmp.assign(
+            fh=np.where(
+             (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(1))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(2))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(3))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(4))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(5))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(6))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(7))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(8))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(9))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(10))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(11))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(12))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(13))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(14))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(15))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(16))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(17))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(18))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(19))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(20))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(21))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(22))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(23))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(24))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(25))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(26))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(27))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(28))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(29))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(30))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(31))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(32))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(33))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(34))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(35))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(36))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(37))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(38))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(39))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(40))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(41))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(42))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(43))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(44))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(45))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(46))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(47))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(48))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(49))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(50))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(51))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(52))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(53))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(54))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(55))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(56))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(57))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(58))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(59))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(60))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(61))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(62))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(63))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(64))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(65))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(66))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(67))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(68))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(69))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(70))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(71))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(72))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(73))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(74))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(75))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(76))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(77))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(78))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(79))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(80))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(81))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(82))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(83))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(84))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(85))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(86))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(87))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(88))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(89))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-1))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-2))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-3))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-4))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-5))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-6))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-7))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-8))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-9))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-10))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-11))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-12))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-13))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-14))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-15))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-16))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-17))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-18))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-19))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-20))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-21))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-22))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-23))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-24))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-25))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-26))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-27))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-28))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-29))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-30))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-31))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-32))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-33))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-34))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-35))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-36))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-37))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-38))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-39))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-40))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-41))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-42))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-43))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-44))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-45))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-46))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-47))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-48))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-49))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-50))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-51))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-52))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-53))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-54))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-55))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-56))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-57))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-58))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-59))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-60))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-61))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-62))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-63))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-64))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-65))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-66))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-67))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-68))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-69))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-70))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-71))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-72))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-73))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-74))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-75))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-76))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-77))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-78))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-79))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-80))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-81))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-82))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-83))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-84))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-85))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-86))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-87))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-88))
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-89))                             
+                ,
+                True,
+                False,
+            )
+        )
+        df_tmp = df_tmp.assign(
+            fl=np.where(             
+               (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(1))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(2))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(3))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(4))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(5))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(6))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(7))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(8))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(9))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(10))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(11))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(12))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(13))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(14))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(15))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(16))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(17))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(18))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(19))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(20))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(21))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(22))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(23))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(24))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(25))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(26))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(27))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(28))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(29))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(30))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(31))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(32))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(33))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(34))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(35))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(36))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(37))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(38))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(39))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(40))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(41))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(42))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(43))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(44))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(45))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(46))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(47))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(48))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(49))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(50))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(51))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(52))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(53))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(54))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(55))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(56))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(57))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(58))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(59))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(60))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(61))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(62))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(63))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(64))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(65))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(66))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(67))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(68))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(69))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(70))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(71))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(72))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(73))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(74))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(75))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(76))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(77))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(78))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(79))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(80))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(81))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(82))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(83))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(84))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(85))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(86))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(87))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(88))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(89))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-1))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-2))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-3))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-4))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-5))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-6))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-7))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-8))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-9))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-10))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-11))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-12))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-13))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-14))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-15))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-16))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-17))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-18))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-19))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-20))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-21))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-22))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-23))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-24))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-25))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-26))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-27))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-28))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-29))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-30))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-31))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-32))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-33))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-34))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-35))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-36))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-37))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-38))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-39))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-40))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-41))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-42))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-43))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-44))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-45))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-46))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-47))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-48))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-49))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-50))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-51))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-52))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-53))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-54))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-55))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-56))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-57))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-58))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-59))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-60))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-61))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-62))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-63))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-64))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-65))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-66))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-67))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-68))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-69))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-70))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-71))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-72))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-73))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-74))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-75))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-76))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-77))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-78))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-79))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-80))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-81))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-82))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-83))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-84))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-85))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-86))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-87))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-88))
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-89))                
+                ,
+                True,
+                False,
+            )
+        )
+        df_tmp = df_tmp[["fh", "fl"]]
+        df_tmp = df_tmp.rename(columns={"fh": column_name_high, "fl": column_name_low})
+        self.df = self.df.merge(df_tmp, left_index=True, right_index=True)
+
+
     def gator(
         self,
         period_jaws=13,
