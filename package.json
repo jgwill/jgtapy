@@ -1,0 +1,28 @@
+{
+  "name": "jgtapy",
+  "version": "1.9.7",
+  "description": "jgtapy packaging",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "pip install jgtapy",
+    "build-release": "bash build-by-docker.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jgwill/jgtapy.git"
+  },
+  "keywords": [
+    "jgt",
+    "jgtapy"
+  ],
+  "author": "Guillaume Isabelle",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jgwill/jgtapy/issues"
+  },
+  "homepage": "https://github.com/jgwill/jgtapy#readme"
+}

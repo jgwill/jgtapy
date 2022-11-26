@@ -1,12 +1,19 @@
-pversion=1.9.7
-nversion=1.9.8
+if [ "$2" != "" ]; then
+pversion=$1
+nversion=$2
 cdir=$(pwd)
 
-cd jgtapy
-for f in $(ls *);do sed -i 's/'$pversion'/'$nversion'/g' $f &>/dev/null;done
+if [ -e "jgtpy/.flag" ] ;then 
+cd jgtpy
+for f in $(ls *);do if [ -f "$f" ]; then sed -i 's/'$pversion'/'$nversion'/g' $f &>/dev/null;fi;done
 cd $cdir
 cd test
-for f in $(ls *);do sed -i 's/'$pversion'/'$nversion'/g' $f &>/dev/null;done
+for f in $(ls *);do if [ -f "$f" ]; then sed -i 's/'$pversion'/'$nversion'/g' $f &>/dev/null;fi;done
 cd $cdir
-for f in $(ls *);do sed -i 's/'$pversion'/'$nversion'/g' $f &>/dev/null;done
-
+for f in $(ls *);do if [ -f "$f" ]; then sed -i 's/'$pversion'/'$nversion'/g' $f &>/dev/null;fi;done
+else
+	echo " MUST USE VM  To have jgtpy Mounted: use dkrun "
+fi
+else
+	echo "Must supply old and new version number"
+fi
