@@ -23,7 +23,7 @@ Installation
 ============
 ::
 
-   pip install jgtapy
+   pip install jgtapy-beta
 
 Indicators
 ==========

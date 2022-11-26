@@ -1,6 +1,6 @@
 [![Upload Python Package](https://github.com/jgwill/jgtapy/actions/workflows/python-publish.yml/badge.svg)](https://github.com/jgwill/jgtapy/actions/workflows/python-publish.yml)
 
-# jgtapy
+# jgtapy-beta
 Technical Indicators for the Pandas' Dataframes
 
 
@@ -9,7 +9,7 @@ Documentation: https://pandastechindicators.readthedocs.io/en/latest/
 
 ## Installation
 ```
-pip install -U jgtapy
+pip install -U jgtapy-beta
 ```
 
 ## Example

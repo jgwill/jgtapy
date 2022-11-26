@@ -1,7 +1,7 @@
-jgtapy
+jgtapy-beca
 ====
 
-Technical Indicators for the Pandas' Dataframes
+JGTapy Indicators
 
 Documentation: https://pandastechindicators.readthedocs.io/en/latest/
 
@@ -10,7 +10,7 @@ Installation
 
 ::
 
-    pip install -U jgtapy
+    pip install -U jgtapy-beta
 
 Example
 -------
@@ -19,7 +19,7 @@ Example
 
 
     >>> import pandas as pd
-    >>> from tapy import Indicators
+    >>> from jgtapy-beta import Indicators
     >>> df = pd.read_csv('EURUSD60.csv')
     >>> i= Indicators(df)
     >>> i.accelerator_oscillator(column_name='AC')
