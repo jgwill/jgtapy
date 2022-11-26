@@ -9,6 +9,7 @@ from jgtapy import __version__ as version
 
 INSTALL_REQUIRES = [
     'pandas>=0.25.1',
+    'tapy>=1.9.5'
 ]
 
 EXTRAS_DEV_LINT = [
@@ -30,10 +31,10 @@ EXTRAS_DEV_DOCS = [
 setup(
     name='jgtapy',
     version=version,
-    description='JGT Technical Indicators for the Pandas\' Dataframes',
+    description='JGT Technical Indicators',
     long_description=open('README.rst').read(),
-    author='Dmitrii Kurlov/+JG',
-    author_email='dmitriik@tutanota.com',
+    author='Guillaume Isabelle',
+    author_email='jgi@jgwill.com',
     url='https://github.com/jgwill/jgtapy',
     packages=find_packages(exclude=['*test*']),
     install_requires=INSTALL_REQUIRES,
@@ -46,9 +47,8 @@ setup(
     license='MIT',
     keywords='technical analyse indicators pandas forex stocks',
     classifiers=[
-        "Development Status :: 5 - Production/Stable",
-        "Intended Audience :: Developers",
-        "Intended Audience :: Financial and Insurance Industry",
+        "Development Status :: 5 - Beta",
+        "Intended Audience :: Developers", 
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Programming Language :: Python",

@@ -1,14 +1,15 @@
 {
-  "name": "jgtapy",
+  "name": "jgtapy-beta",
   "version": "1.9.7",
-  "description": "jgtapy packaging",
+  "description": "jgtapy-beta packaging",
   "main": "index.js",
   "directories": {
     "doc": "docs",
-    "test": "test"
+    "test": "test",
+    "src":"jgtapy"
   },
   "scripts": {
-    "test": "pip install jgtapy",
+    "test": "pip install jgtapy-beta",
     "build-release": "bash build-by-docker.sh"
   },
   "repository": {
@@ -17,7 +18,8 @@
   },
   "keywords": [
     "jgt",
-    "jgtapy"
+    "jgtapy",
+    "beta"
   ],
   "author": "Guillaume Isabelle",
   "license": "MIT",
