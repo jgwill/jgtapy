@@ -1,12 +1,12 @@
 {
   "name": "jgtapy-beta",
-  "version": "1.9.7",
+  "version": "1.9.8",
   "description": "jgtapy-beta packaging",
   "main": "index.js",
   "directories": {
     "doc": "docs",
     "test": "test",
-    "src":"jgtapy"
+    "src": "jgtapy"
   },
   "scripts": {
     "test": "pip install jgtapy-beta",
