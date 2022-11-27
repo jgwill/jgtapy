@@ -5,7 +5,8 @@
   "main": "index.js",
   "directories": {
     "doc": "docs",
-    "test": "test"
+    "test": "test",
+    "src":"jgtapy" 
   },
   "scripts": {
     "test": "pip install jgtapy",
