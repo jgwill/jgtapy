@@ -10,7 +10,7 @@
   },
   "scripts": {
     "test": "pip install jgtapy",
-    "build-release": "bash build-by-docker.sh"
+    "build": "bash build-n-release.sh"
   },
   "repository": {
     "type": "git",
