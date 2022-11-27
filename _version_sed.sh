@@ -5,11 +5,13 @@ cdir=$(pwd)
 logfile=build-log.txt
 echo "Upping version: $pversion > $nversion" >> $logfile
 
-json2bash package.json > .package-autobuild.sh && . .package-autobuild.sh && \
-	json2bash package.json "directories" > .package-autobuild-directories.sh && . .package-autobuild-directories.sh && \
-	export subdir=$src || echo "ERROR Reading package subdir src=$src" >> $logfile
+#json2bash package.json > .package-autobuild.sh && . .package-autobuild.sh && \
+#	json2bash package.json "directories" > .package-autobuild-directories.sh && . .package-autobuild-directories.sh && \
+#	export subdir=$src || echo "ERROR Reading package subdir src=$src" >> $logfile
 #if [ -e "jgtpy/.flag" ] ;then 
-cd $subdir
+echo "$(cat pyproject.toml | tr "{" "#" | tr "[" "#" | grep name | sed  's/ //g')" > _tmp && . _tmp && rm _tmp  && echo $name
+
+cd $name
 for f in $(ls *);do if [ -f "$f" ]; then sed -i 's/'$pversion'/'$nversion'/g' $f &>/dev/null;fi;done
 cd $cdir
 if [ -d "test" ]; then 
