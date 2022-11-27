@@ -1,10 +1,13 @@
 if [ "$2" != "" ]; then
-pversion=$1
-nversion=$2
+pversion="$1"
+nversion="$2"
 cdir=$(pwd)
+logfile=build-log.txt
+echo "Upping version: $pversion > $nversion" >> $logfile
+
 json2bash package.json > .package-autobuild.sh && . .package-autobuild.sh && \
 	json2bash package.json "directories" > .package-autobuild-directories.sh && . .package-autobuild-directories.sh && \
-	export subdir=$src
+	export subdir=$src || echo "ERROR Reading package subdir src=$src" >> $logfile
 #if [ -e "jgtpy/.flag" ] ;then 
 cd $subdir
 for f in $(ls *);do if [ -f "$f" ]; then sed -i 's/'$pversion'/'$nversion'/g' $f &>/dev/null;fi;done
@@ -20,4 +23,6 @@ for f in $(ls *);do if [ -f "$f" ]; then sed -i 's/'$pversion'/'$nversion'/g' $f
 #fi
 else
 	echo "Must supply old and new version number"
+	echo "UP VERSION ERROR " >> build-log.txt
+
 fi
