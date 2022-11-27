@@ -3,8 +3,8 @@
 if [ "$HOSTNAME" != "$dkhostname" ]; then
 #. build-by-docker.sh
 	 echo "Launching DockerTAG: $dockertag to build and publish "
-
-        dkrun "bash /work/build-n-release.sh"
+	dkrun "bash /work/build-n-release.sh" || $binroot/dkrun "bash /work/build-n-release.sh"
+  #bash -c '. $HOME/.bashrc && dkrun "bash /work/build-n-release.sh"'
 else
 
 #logfile=build-log.txt
