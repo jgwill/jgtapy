@@ -1,16 +1,39 @@
 #!/bin/bash
+logfile=build-log.txt
 versiontype=patch
-if [ "$1" != "" ] ; then versiontype=$1;fi
-if [ -e "build/load-package-previous.sh" ];then rm -rf build;fi
+if [ "$1" != "" ] ; then versiontype="$1";fi
+if [ -e "build/build-flag" ];then rm -rf build;fi
 
-mkdir -p build && \
+mkdir -p build && echo "building" > build/build-flag && \
 	json2bash package.json > build/load-package-previous.sh && \
-	 build/load-package-previous.sh && export oldversion=$version && \
-	((npm version $versiontype&>/dev/null && git push)|| (echo "Oh, enter commit msg:";read MSG&&git commit . -m "$MSG" && npm version $versiontype  && git push ) ) && \
-	json2bash package.json > build/load-package-upgraded.sh && \ 
-	. build/load-package-upgraded.sh && export newversion=$version && \
-	./_version_sed.sh $oldversion $newversion && \
+	 build/load-package-previous.sh && export oldversion=$version && export _continue="1" || export _continue="0"
+#export _continue="0"
+if [ "$_continue" == "0" ];then
+	msg="Failed getting old version - maybe json2bash...."
+	echo "$msg";echo "$msg" >> $logfile
+else
+npm version $versiontype > build/npm-version-out.txt && git push|| (echo "Oh, enter commit msg:";read MSG&&git commit . -m "$MSG" && npm version $versiontype  && git push )  &&  export _continue="1" || export _continue="0"
+if [ "$_continue" == "0" ];then
+        msg="Failed with version upping"
+        echo "$msg";echo "$msg" >> $logfile
+else
+json2bash package.json > build/load-package-upgraded.sh && \ 
+	. build/load-package-upgraded.sh && export newversion=$version && export _continue="1" || export _continue="0"
+if [ "$_continue" == "0" ];then
+        msg="Failed getting new version with json2bash"
+        echo "$msg";echo "$msg" >> $logfile
+else
+
+chmod a+x _version*sh
+./_version_sed.sh "$oldversion" "$newversion" && echo "Upped $versiontype $oldversion > $newversion"  >> $logfile && \
 make dist && \
 twine upload dist/*  && echo "Package : $name was published" || echo "Package : $name WAS NOT Published :( "
 make clean &> /dev/null
 #rm -rf build
+
+
+fi
+
+fi
+
+fi
