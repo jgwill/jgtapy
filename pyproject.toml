@@ -4,11 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "jgtapy"
-version = "1.9.7"
+version = "1.9.12"
 authors = [
   { name="JGWill", email="jgi@jgwill.com" },
 ]
-description = "Enhanced Tapy"
+description = "Enhanced JGTapy"
 readme = "README.md"
 requires-python = ">=3.7"
 classifiers = [

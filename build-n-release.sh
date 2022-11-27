@@ -1,4 +1,12 @@
 #!/bin/bash
+. _env.sh
+if [ "$HOSTNAME" != "$dkhostname" ]; then
+#. build-by-docker.sh
+	 echo "Launching DockerTAG: $dockertag to build and publish "
+
+        dkrun "bash /work/build-n-release.sh"
+else
+
 logfile=build-log.txt
 versiontype=patch
 if [ "$1" != "" ] ; then versiontype="$1";fi
@@ -31,6 +39,8 @@ twine upload dist/*  && echo "Package : $name was published" || echo "Package : 
 make clean &> /dev/null
 #rm -rf build
 
+
+fi
 
 fi
 
