@@ -5,6 +5,7 @@ __pycache__/
 
 old
 build-log.txt
+logs
 
 # C extensions
 *.so

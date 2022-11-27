@@ -7,7 +7,7 @@ if [ "$HOSTNAME" != "$dkhostname" ]; then
         dkrun "bash /work/build-n-release.sh"
 else
 
-logfile=build-log.txt
+#logfile=build-log.txt
 versiontype=patch
 if [ "$1" != "" ] ; then versiontype="$1";fi
 if [ -e "build/build-flag" ];then rm -rf build;fi

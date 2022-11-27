@@ -1,8 +1,10 @@
+. _env.sh
+
 if [ "$2" != "" ]; then
 pversion="$1"
 nversion="$2"
 cdir=$(pwd)
-logfile=build-log.txt
+
 echo "Upping version: $pversion > $nversion" >> $logfile
 
 #json2bash package.json > .package-autobuild.sh && . .package-autobuild.sh && \
@@ -25,6 +27,6 @@ for f in $(ls *);do if [ -f "$f" ]; then sed -i 's/'$pversion'/'$nversion'/g' $f
 #fi
 else
 	echo "Must supply old and new version number"
-	echo "UP VERSION ERROR " >> build-log.txt
+	echo "UP VERSION ERROR " >> $logfile
 
 fi
