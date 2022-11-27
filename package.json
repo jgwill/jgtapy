@@ -1,6 +1,6 @@
 {
   "name": "jgtapy-beta",
-  "version": "1.9.10",
+  "version": "1.9.11",
   "description": "jgtapy-beta packaging",
   "main": "index.js",
   "directories": {
