@@ -13,8 +13,8 @@ if [ "$1" != "" ] ; then versiontype="$1";fi
 if [ -e "build/build-flag" ];then rm -rf build;fi
 
 mkdir -p build && echo "building" > build/build-flag && \
-	json2bash package.json > build/load-package-previous.sh && \
-	 build/load-package-previous.sh && export oldversion="$version" && export _continue="1" || export _continue="0"
+	json2bash package.json . -x > build/load-package-previous.sh && \
+	. build/load-package-previous.sh && export oldversion="$version" && export _continue="1" || export _continue="0"
 #export _continue="0"
 if [ "$_continue" == "0" ];then
 	msg="Failed getting old version - maybe json2bash...."
@@ -25,7 +25,7 @@ if [ "$_continue" == "0" ];then
         msg="Failed with version upping"
         echo "$msg";echo "$msg" >> $logfile
 else
-	json2bash package.json > build/load-package-upgraded.sh && \ 
+	json2bash package.json . -x  > build/load-package-upgraded.sh && \
 	. build/load-package-upgraded.sh && export newversion="$version" && export _continue="1" || export _continue="0"
 if [ "$_continue" == "0" ];then
         msg="Failed getting new version with json2bash"

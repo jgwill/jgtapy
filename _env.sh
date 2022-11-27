@@ -2,7 +2,7 @@
 dockertag=jgwill/zeus:python-package-builder
 containername=jgtapybuilder
 
-logfile=logs/build-log.txt
+export logfile=logs/build-log.txt
 
 dkhostname=$containername
 
