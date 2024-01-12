@@ -1,6 +1,6 @@
 {
   "name": "jgtapy",
-  "version": "1.9.15",
+  "version": "1.9.20",
   "description": "jgtapy packaging",
   "main": "index.js",
   "directories": {
@@ -25,5 +25,5 @@
   "bugs": {
     "url": "https://github.com/jgwill/jgtapy/issues"
   },
-  "homepage": "https://github.com/jgwill/jgtapy#readme"
+  "homepage": "https://jgtapy.jgwill.com/"
 }

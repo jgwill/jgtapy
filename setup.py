@@ -32,7 +32,7 @@ setup(
     version=version,
     description='JGT Technical Indicators for the Pandas\' Dataframes',
     long_description=open('README.rst').read(),
-    author='Dmitrii Kurlov/+JG',
+    author='Dmitrii Kurlov/(forked:JGWill)',
     author_email='dmitriik@tutanota.com',
     url='https://github.com/jgwill/jgtapy',
     packages=find_packages(exclude=['*test*']),

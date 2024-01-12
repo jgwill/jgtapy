@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "jgtapy"
-version = "1.9.12"
+version = "1.9.20"
 authors = [
   { name="JGWill", email="jgi@jgwill.com" },
 ]
@@ -18,5 +18,5 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/jgwill/jgtapy"
+"Homepage" = "https://jgtapy.jgwill.com"
 "Bug Tracker" = "https://github.com/jgwill/jgtapy/issues"
