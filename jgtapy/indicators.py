@@ -2493,24 +2493,40 @@ class Indicators:
             i.bw_mfi(column_name='mfi')
         return i
     
-    def jgt_create_ids_indicators_as_dataframe(__df,
-                       enableGatorOscillator=False,
-                       enableMFI=False,
-                       cleanupOriginalColumn=True,
-                       dropnavalue=True,
-                       quiet=False):        
-        i=Indicators.jgt_create_ids_indicators_as_instance(__df,
-                       enableGatorOscillator,
-                       enableMFI,                          
-                       cleanupOriginalColumn,                    
-                       quiet)
-        _df=i.df
+    
+    def jgt_create_ids_indicators_as_dataframe(dfsrc,
+                           enableGatorOscillator=False,
+                           enableMFI=False,
+                           cleanupOriginalColumn=True,
+                           dropnavalue=True,
+                           quiet=False):
+        """
+        Creates a pandas dataframe with JGT indicators based on the input dataframe.
+
+        Args:
+        dfsrc (pandas.DataFrame): The input dataframe.
+        enableGatorOscillator (bool): Whether to enable the Gator Oscillator indicator. Default is False.
+        enableMFI (bool): Whether to enable the Money Flow Index indicator. Default is False.
+        cleanupOriginalColumn (bool): Whether to clean up the original column. Default is True.
+        dropnavalue (bool): Whether to drop rows with NaN values. Default is True.
+        quiet (bool): Whether to suppress print statements. Default is False.
+
+        Returns:
+        pandas.DataFrame: The dataframe with JGT indicators.
+        """
+        i=Indicators.jgt_create_ids_indicators_as_instance(dfsrc,
+                           enableGatorOscillator,
+                           enableMFI,                          
+                           cleanupOriginalColumn,                    
+                           quiet)
+        dfresult=i.df
         if dropnavalue:
-            _df = _df.dropna()
+            dfresult = dfresult.dropna()
         try: 
-            _df=_df.set_index('Date')
+            dfresult=dfresult.set_index('Date')
         except TypeError:
             pass
         if not quiet:
             print("done adding indicators :)")
-        return _df
+        return dfresult
+
