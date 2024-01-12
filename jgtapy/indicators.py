@@ -138,6 +138,42 @@ class Indicators:
         df_tmp = df_tmp[[column_name]]
         self.df = self.df.merge(df_tmp, left_index=True, right_index=True)
 
+    def ao_ac_oscillator(self, column_name_ao="ao",column_name_ac="ac"):
+        """
+        Awesome Oscillator (AO) and Accelerator Oscillator (AC)
+        -----------------------
+
+            https://www.metatrader4.com/en/trading-platform/help/analytics/tech_indicators/awesome_oscillator
+
+            >>> Indicators.ao_ac_oscillator(column_name_ao='ao',column_name_ac='ac')
+
+            :param str column_name_ao: Column name, default: ao
+            :param str column_name_ac: Column name, default: ac
+            :return: None
+        """
+        # Data frame for storing temporary data
+        df_tmp = pd.DataFrame()
+        df_tmp["High"] = self.df[self._columns["High"]]
+        df_tmp["Low"] = self.df[self._columns["Low"]]
+
+        # Calculate Awesome Oscillator
+        calculate_ao(df_tmp, column_name_ao)
+        
+        df_tmp = df_tmp[[column_name_ao]]
+        
+        #@State At this point we have a column named ao that the AC REquires and already have the df_tmp it also has
+
+        # Calculate SMA for Awesome Oscillator
+        calculate_sma(df_tmp, 5, "sma_ao", "ao")
+
+        # Calculate Accelerator Oscillator
+        df_tmp[column_name_ac] = df_tmp["ao"] - df_tmp["sma_ao"]
+        
+        df_tmp = df_tmp[[column_name_ao,column_name_ac]]
+        
+        self.df = self.df.merge(df_tmp, left_index=True, right_index=True)
+        
+        
     def accelerator_oscillator(self, column_name="ac"):
         """
         Accelerator Oscillator (AC)
