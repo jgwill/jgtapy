@@ -37,6 +37,7 @@ class Indicators:
         low_col="Low",
         close_col="Close",
         volume_col="Volume",
+        median_col = "Median",
     ):
         """
         Initiate Indicators object
@@ -48,7 +49,15 @@ class Indicators:
         :param str close_col: Name of Close column in df
         :param str volume_col: Name of Volume column in df. This column is optional
             and require only if indicator use this data.
+        :param str median_col: Name of Median column in df. This column is optional
         """
+        try:
+            # Check if 'Date' is the index column
+            if df.index.name == 'Date':
+                # Reset the index to remove 'Date' as the index column
+                df.reset_index(inplace=True)
+        except Exception:
+            pass
         self.df = df
         self._columns = {
             "Open": open_col,
@@ -56,6 +65,7 @@ class Indicators:
             "Low": low_col,
             "Close": close_col,
             "Volume": volume_col,
+            "Median": median_col
         }
 
     def sma(self, period=5, column_name="sma", apply_to="Close"):
@@ -263,12 +273,13 @@ class Indicators:
             :param str column_name_lips: Column Name for Alligator' Lips, default: alligator_lips
             :return: None
         """
-        df_median = self.df[[self._columns["High"], self._columns["Low"]]]
-        median_col = "median_col"
-        df_median = df_median.assign(
-            median_col=lambda x: (x[self._columns["High"]] + x[self._columns["Low"]])
-            / 2
-        )
+        median_col = self._columns["Median"]
+        if median_col not in self.df.columns:
+            df_median = self.df[[self._columns["High"], self._columns["Low"]]]
+            df_median = self.df[[self._columns["High"], self._columns["Low"], self._columns["Median"]]]
+        else:
+            df_median = self.df[[self._columns["High"], self._columns["Low"], self._columns["Median"]]]
+
         df_j = calculate_smma(df_median, period_jaws, column_name_jaws, median_col)
         df_t = calculate_smma(df_median, period_teeth, column_name_teeth, median_col)
         df_l = calculate_smma(df_median, period_lips, column_name_lips, median_col)
@@ -2411,7 +2422,7 @@ class Indicators:
 
         self.df = self.df.merge(df_tmp, left_index=True, right_index=True)
         
-        
+    
     def pds_add_ohlc_stc_columns(__df,
                        cleanupOriginalColumn=True,quiet=True):
         if not 'Open' in __df.columns:
@@ -2467,6 +2478,19 @@ class Indicators:
                        enableMFI=False,
                        cleanupOriginalColumn=True,
                        quiet=False):
+        """
+        Adds various JGT indicators to the given DataFrame and returns an instance of the Indicators class.
+
+        Args:
+            df (pandas.DataFrame): The DataFrame to which the indicators will be added.
+            enableGatorOscillator (bool, optional): Whether to enable the Gator Oscillator indicator. Defaults to False.
+            enableMFI (bool, optional): Whether to enable the Money Flow Index (MFI) indicator. Defaults to False.
+            cleanupOriginalColumn (bool, optional): Whether to clean up the original columns. Defaults to True.
+            quiet (bool, optional): Whether to suppress the output. Defaults to False.
+
+        Returns:
+            Indicators: An instance of the Indicators class with the added indicators.
+        """
         if not quiet:
             print("Adding indicators...")
         # if not 'pen' in self.df.columns:
