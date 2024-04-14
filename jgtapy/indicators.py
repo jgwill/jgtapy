@@ -28,7 +28,7 @@ class Indicators:
         3726  2019.09.20  19:00  1.10146  1.10215  1.10121  1.10188    3069  0.000022  1.101216
         3727  2019.09.20  20:00  1.10184  1.10215  1.10147  1.10167    1224  0.000388  1.101506
     """
-
+    index_column_name = 'Date'
     def __init__(
         self,
         df,
@@ -38,6 +38,7 @@ class Indicators:
         close_col="Close",
         volume_col="Volume",
         median_col = "Median",
+        index_column_name = 'Date'        
     ):
         """
         Initiate Indicators object
@@ -50,10 +51,12 @@ class Indicators:
         :param str volume_col: Name of Volume column in df. This column is optional
             and require only if indicator use this data.
         :param str median_col: Name of Median column in df. This column is optional
+        :param str index_column_name: Name of index column in df. Default is 'Date'
         """
+        self.index_column_name = index_column_name
         try:
             # Check if 'Date' is the index column
-            if df.index.name == 'Date':
+            if df.index.name == self.index_column_name:
                 # Reset the index to remove 'Date' as the index column
                 df.reset_index(inplace=True)
         except Exception:
@@ -2547,7 +2550,7 @@ class Indicators:
         if dropnavalue:
             dfresult = dfresult.dropna()
         try: 
-            dfresult=dfresult.set_index('Date')
+            dfresult=dfresult.set_index(Indicators.index_column_name)
         except TypeError:
             pass
         if not quiet:
