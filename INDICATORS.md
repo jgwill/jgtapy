@@ -16,6 +16,11 @@ df = i.df
 print(df.tail())
 ```
 
+### Output Columns
+- alligator_jaws
+- alligator_teeth
+- alligator_lips
+
 ## Awesome Oscillator (AO) 🌟
 
 The Awesome Oscillator is a momentum indicator that compares the 5-period simple moving average (SMA) with the 34-period SMA. It helps to identify market momentum. The implementation can be found in the `awesome_oscillator` method in `jgtapy/indicators.py`.
@@ -31,6 +36,9 @@ i.awesome_oscillator(column_name='ao')
 df = i.df
 print(df.tail())
 ```
+
+### Output Columns
+- ao
 
 ## Accelerator Oscillator (AC) 🚀
 
@@ -48,6 +56,9 @@ df = i.df
 print(df.tail())
 ```
 
+### Output Columns
+- ac
+
 ## Fractals 🌀
 
 Fractals are used to identify potential reversal points in the market. They consist of a series of at least five bars, with the highest high in the middle and two lower highs on each side for a bullish fractal, or the lowest low in the middle and two higher lows on each side for a bearish fractal. The implementation can be found in the `fractals` method and its variations in `jgtapy/indicators.py`.
@@ -64,6 +75,10 @@ df = i.df
 print(df.tail())
 ```
 
+### Output Columns
+- fractals_high
+- fractals_low
+
 ## Market Facilitation Index (MFI) 📈
 
 The Market Facilitation Index measures the efficiency of price movement by comparing the range of price movement to the volume. It helps to identify potential market trends and reversals. The implementation can be found in the `bw_mfi` method in `jgtapy/indicators.py`.
@@ -79,3 +94,6 @@ i.bw_mfi(column_name='bw_mfi')
 df = i.df
 print(df.tail())
 ```
+
+### Output Columns
+- bw_mfi
