@@ -57,3 +57,27 @@ pip install -U jgtapy
 19. Moving Average Convergence/Divergence (MACD)
 20. Simple Moving Average (SMA)
 21. Smoothed Moving Average (SMMA)
+
+## Detailed Documentation
+
+For detailed documentation on the Alligator, Awesome Oscillator (AO), Accelerator Oscillator (AC), Fractals, and Market Facilitation Index (MFI) indicators, including descriptions and usage examples, please refer to the [INDICATORS.md](INDICATORS.md) file.
+
+### Alligator 🐊
+
+The Alligator indicator is a combination of three smoothed moving averages with different periods and shifts. It is used to identify trends and their direction. The three lines are called the Jaw, Teeth, and Lips. The implementation can be found in the `alligator` method in `jgtapy/indicators.py`.
+
+### Awesome Oscillator (AO) 🌟
+
+The Awesome Oscillator is a momentum indicator that compares the 5-period simple moving average (SMA) with the 34-period SMA. It helps to identify market momentum. The implementation can be found in the `awesome_oscillator` method in `jgtapy/indicators.py`.
+
+### Accelerator Oscillator (AC) 🚀
+
+The Accelerator Oscillator measures the acceleration or deceleration of the current market driving force. It is derived from the Awesome Oscillator by subtracting a 5-period SMA of the AO from the AO itself. The implementation can be found in the `accelerator_oscillator` method in `jgtapy/indicators.py`.
+
+### Fractals 🌀
+
+Fractals are used to identify potential reversal points in the market. They consist of a series of at least five bars, with the highest high in the middle and two lower highs on each side for a bullish fractal, or the lowest low in the middle and two higher lows on each side for a bearish fractal. The implementation can be found in the `fractals` method and its variations in `jgtapy/indicators.py`.
+
+### Market Facilitation Index (MFI) 📈
+
+The Market Facilitation Index measures the efficiency of price movement by comparing the range of price movement to the volume. It helps to identify potential market trends and reversals. The implementation can be found in the `bw_mfi` method in `jgtapy/indicators.py`.
