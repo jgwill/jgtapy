@@ -1,4 +1,131 @@
-# jgtapy
+# LLMS.txt for jgtapy
+# Technical Analysis Indicators for JGT Platform
 
-GET /
+GET /README.md
+GET /INDICATORS.md
+
+## Package Purpose
+jgtapy provides the core technical analysis indicators used by the JGT platform. This package focuses specifically on the indicators that are actually implemented and used in jgtpy's JGTIDS.py and jgtapyhelper.py, rather than all available indicators.
+
+## JGT Platform Indicators (Actually Used)
+
+### Bill Williams Indicators (Core JGT Components)
+These are the primary indicators used throughout the JGT platform:
+
+#### 1. Alligator Indicator 🐊
+- **Purpose**: Trend identification and market phase analysis
+- **Implementation**: Three smoothed moving averages with different periods and shifts
+- **JGT Usage**: Regular (5-8-13), Big (34-55-89), and Tide (144-233-377) degrees
+- **Method**: `i.alligator(period_jaws, period_teeth, period_lips, shift_jaws, shift_teeth, shift_lips)`
+
+#### 2. Awesome Oscillator (AO) 🌟  
+- **Purpose**: Momentum measurement
+- **Implementation**: 5-period SMA minus 34-period SMA of median price
+- **JGT Usage**: Core component of FDB signal detection and ZLC patterns
+- **Method**: `i.ao_ac_oscillator(column_name_ao='ao', column_name_ac='ac')`
+
+#### 3. Accelerator Oscillator (AC) 🚀
+- **Purpose**: Momentum acceleration/deceleration detection  
+- **Implementation**: AO minus 5-period SMA of AO
+- **JGT Usage**: Signal confirmation and momentum validation
+- **Method**: Combined with AO in `i.ao_ac_oscillator()`
+
+#### 4. Fractals 🌀
+- **Purpose**: Support/resistance level identification
+- **Implementation**: Pattern recognition for reversal points
+- **JGT Usage**: Multiple degrees for multi-timeframe analysis
+- **Methods**: 
+  - `i.fractals()` - Standard 5-bar fractals
+  - `i.fractals3()`, `i.fractals5()`, `i.fractals8()` - Various degrees
+  - `i.fractals13()`, `i.fractals21()`, `i.fractals34()`, `i.fractals55()`, `i.fractals89()` - Higher degree fractals
+
+#### 5. Market Facilitation Index (MFI) 📈
+- **Purpose**: Volume efficiency analysis
+- **Implementation**: Bill Williams' MFI calculation
+- **JGT Usage**: Signal quality assessment (Squat, Green, Fade, Fake patterns)
+- **Method**: `i.bw_mfi(column_name='mfi')`
+
+#### 6. Gator Oscillator
+- **Purpose**: Alligator phase analysis
+- **Implementation**: Histogram showing Alligator convergence/divergence
+- **JGT Usage**: Market phase identification (optional, controlled by flag)
+- **Method**: `i.gator(period_jaws, period_teeth, period_lips, ...)`
+
+## Integration with JGT Platform
+
+### Used by jgtpy.JGTIDS
+```python
+from jgtapy import Indicators
+
+i = Indicators(dataframe)
+
+# Core Bill Williams suite used in JGT
+i.ao_ac_oscillator(column_name_ao='ao', column_name_ac='ac')
+i.alligator(period_jaws=13, period_teeth=8, period_lips=5, ...)
+i.fractals(column_name_high='fh', column_name_low='fl')
+i.bw_mfi(column_name='mfi')
+```
+
+### JGT-Specific Usage Patterns
+
+#### Multi-Degree Alligator Analysis
+```python
+# Regular Alligator (13-8-5)
+i.alligator(13, 8, 5, 8, 5, 3, 'jaw', 'teeth', 'lips')
+
+# Big Alligator (89-55-34) 
+i.alligator(89, 55, 34, 55, 34, 21, 'bjaw', 'bteeth', 'blips')
+
+# Tide Alligator (377-233-144)
+i.alligator(377, 233, 144, 233, 144, 89, 'tjaw', 'tteeth', 'tlips')
+```
+
+#### Progressive Fractal Degrees
+```python
+# Used for multi-timeframe fractal analysis
+for degree in [2, 3, 5, 8, 13, 21, 34, 55, 89]:
+    getattr(i, f'fractals{degree}')(f'fh{degree}', f'fl{degree}')
+```
+
+## Column Naming Conventions
+
+### Standard JGT Column Names
+- **Alligator**: `jaw`, `teeth`, `lips` (regular), `bjaw`, `bteeth`, `blips` (big), `tjaw`, `tteeth`, `tlips` (tide)
+- **Oscillators**: `ao` (Awesome), `ac` (Accelerator)
+- **Fractals**: `fh`, `fl` (high/low), with degree suffixes (`fh3`, `fl3`, etc.)
+- **MFI**: `mfi` (Market Facilitation Index)
+
+### Output Integration
+The indicators are calculated and added to DataFrames that flow through:
+```
+jgtapy indicators → jgtpy.JGTIDS → jgtml signal detection → trading decisions
+```
+
+## Not Used in JGT Platform
+
+### Available but Unused Indicators
+While jgtapy includes many other indicators (MACD, RSI, Bollinger Bands, etc.), the JGT platform specifically focuses on the Bill Williams methodology and uses only the indicators listed above.
+
+### Other Indicators Documentation
+For complete indicator documentation including unused indicators, see:
+- GET /README.md (full indicator list)
+- GET /INDICATORS.md (detailed documentation)
+
+## Development Notes
+
+### Indicator Selection Rationale
+The JGT platform uses a focused set of Bill Williams indicators because:
+1. **Coherent Methodology** - All indicators work together as a system
+2. **Multi-Timeframe Compatibility** - Indicators scale across timeframes effectively  
+3. **Signal Integration** - Indicators combine naturally for confluence analysis
+4. **Proven Performance** - Battle-tested in live trading environments
+
+### Platform Integration
+- **jgtpy**: Calls jgtapy indicators through Indicators class
+- **jgtml**: Uses indicator output for FDB signal detection
+- **Configuration**: Indicator parameters controlled by JGTIDSRequest objects
+
+---
+
+*This documentation focuses on jgtapy indicators actually used in the JGT platform. For complete jgtapy capabilities, see the full package documentation.*
 
