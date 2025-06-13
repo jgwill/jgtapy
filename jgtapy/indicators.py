@@ -4,7 +4,7 @@ import numpy as np
 
 from .utils import calculate_ao, calculate_sma, calculate_smma, mad
 
-__version__ = "1.9.21"
+__version__ = "1.9.22"
 
 
 class Indicators:
@@ -38,7 +38,7 @@ class Indicators:
         close_col="Close",
         volume_col="Volume",
         median_col = "Median",
-        index_column_name = 'Date'        
+        index_column_name = 'Date'
     ):
         """
         Initiate Indicators object
@@ -171,9 +171,9 @@ class Indicators:
 
         # Calculate Awesome Oscillator
         calculate_ao(df_tmp, column_name_ao)
-        
+
         df_tmp = df_tmp[[column_name_ao]]
-        
+
         #@State At this point we have a column named ao that the AC REquires and already have the df_tmp it also has
 
         # Calculate SMA for Awesome Oscillator
@@ -181,12 +181,12 @@ class Indicators:
 
         # Calculate Accelerator Oscillator
         df_tmp[column_name_ac] = df_tmp["ao"] - df_tmp["sma_ao"]
-        
+
         df_tmp = df_tmp[[column_name_ao,column_name_ac]]
-        
+
         self.df = self.df.merge(df_tmp, left_index=True, right_index=True)
-        
-        
+
+
     def accelerator_oscillator(self, column_name="ac"):
         """
         Accelerator Oscillator (AC)
@@ -596,7 +596,7 @@ class Indicators:
         df_tmp = df_tmp.assign(
             fh=np.where(
                 (
-                    df_tmp[self._columns["High"]] 
+                    df_tmp[self._columns["High"]]
                     > df_tmp[self._columns["High"]].shift(1)
                     )
                 & (
@@ -665,7 +665,7 @@ class Indicators:
         df_tmp = df_tmp.assign(
             fh=np.where(
                 (
-                    df_tmp[self._columns["High"]] 
+                    df_tmp[self._columns["High"]]
                     > df_tmp[self._columns["High"]].shift(1)
                     )
                 & (
@@ -718,7 +718,7 @@ class Indicators:
                 & (
                     df_tmp[self._columns["Low"]]
                     < df_tmp[self._columns["Low"]].shift(-1)
-                )  
+                )
                 & (
                     df_tmp[self._columns["Low"]]
                     < df_tmp[self._columns["Low"]].shift(-2)
@@ -761,7 +761,7 @@ class Indicators:
         df_tmp = df_tmp.assign(
             fh=np.where(
                 (
-                    df_tmp[self._columns["High"]] 
+                    df_tmp[self._columns["High"]]
                     > df_tmp[self._columns["High"]].shift(1)
                     )
                 & (
@@ -841,7 +841,7 @@ class Indicators:
                 & (
                     df_tmp[self._columns["Low"]]
                     < df_tmp[self._columns["Low"]].shift(-1)
-                )  
+                )
                 & (
                     df_tmp[self._columns["Low"]]
                     < df_tmp[self._columns["Low"]].shift(-2)
@@ -897,7 +897,7 @@ class Indicators:
         df_tmp = df_tmp.assign(
             fh=np.where(
                 (
-                    df_tmp[self._columns["High"]] 
+                    df_tmp[self._columns["High"]]
                     > df_tmp[self._columns["High"]].shift(1)
                     )
                 & (
@@ -1022,7 +1022,7 @@ class Indicators:
                 & (
                     df_tmp[self._columns["Low"]]
                     < df_tmp[self._columns["Low"]].shift(-1)
-                )  
+                )
                 & (
                     df_tmp[self._columns["Low"]]
                     < df_tmp[self._columns["Low"]].shift(-2)
@@ -1098,7 +1098,7 @@ class Indicators:
         df_tmp = df_tmp.assign(
             fh=np.where(
                 (
-                    df_tmp[self._columns["High"]] 
+                    df_tmp[self._columns["High"]]
                     > df_tmp[self._columns["High"]].shift(1)
                     )
                 & (
@@ -1239,7 +1239,7 @@ class Indicators:
                 & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(19))
                 & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(20))
                 & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(21))
-                & ( df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-1) )  
+                & ( df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-1) )
                 & (
                     df_tmp[self._columns["Low"]]
                     < df_tmp[self._columns["Low"]].shift(-2)
@@ -1627,14 +1627,14 @@ class Indicators:
                 & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-52))
                 & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-53))
                 & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-54))
-                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-55))                    
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-55))
                 ,
                 True,
                 False,
             )
         )
         df_tmp = df_tmp.assign(
-            fl=np.where(             
+            fl=np.where(
                 (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(1))
                 & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(2))
                 & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(3))
@@ -1950,14 +1950,14 @@ class Indicators:
                 & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-86))
                 & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-87))
                 & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-88))
-                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-89))                             
+                & (df_tmp[self._columns["High"]] > df_tmp[self._columns["High"]].shift(-89))
                 ,
                 True,
                 False,
             )
         )
         df_tmp = df_tmp.assign(
-            fl=np.where(             
+            fl=np.where(
                (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(1))
                 & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(2))
                 & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(3))
@@ -2135,7 +2135,7 @@ class Indicators:
                 & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-86))
                 & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-87))
                 & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-88))
-                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-89))                
+                & (df_tmp[self._columns["Low"]] < df_tmp[self._columns["Low"]].shift(-89))
                 ,
                 True,
                 False,
@@ -2424,8 +2424,8 @@ class Indicators:
         )
 
         self.df = self.df.merge(df_tmp, left_index=True, right_index=True)
-        
-    
+
+
     def pds_add_ohlc_stc_columns(__df,
                        cleanupOriginalColumn=True,quiet=True):
         if not 'Open' in __df.columns:
@@ -2463,9 +2463,9 @@ class Indicators:
                 ctxcolname (column name from)
                 _axis (  axis)
                 _quiet (quiet output)
-                
+
         Returns:
-            Clean DataFrame 
+            Clean DataFrame
         """
         if colname in _df.columns:
             return _df.drop(_df.loc[:, colname:colname].columns,axis = _axis)
@@ -2513,14 +2513,14 @@ class Indicators:
         i.fractals34(column_name_high='fb34', column_name_low='fs34')
         i.fractals55(column_name_high='fb55', column_name_low='fs55')
         i.fractals89(column_name_high='fb89', column_name_low='fs89')
-        
+
         if enableGatorOscillator:
             i.gator(period_jaws=13, period_teeth=8, period_lips=5, shift_jaws=8, shift_teeth=5, shift_lips=3, column_name_val1='gl', column_name_val2='gh')
         if enableMFI:
             i.bw_mfi(column_name='mfi')
         return i
-    
-    
+
+
     def jgt_create_ids_indicators_as_dataframe(dfsrc,
                            enableGatorOscillator=False,
                            enableMFI=False,
@@ -2543,13 +2543,13 @@ class Indicators:
         """
         i=Indicators.jgt_create_ids_indicators_as_instance(dfsrc,
                            enableGatorOscillator,
-                           enableMFI,                          
-                           cleanupOriginalColumn,                    
+                           enableMFI,
+                           cleanupOriginalColumn,
                            quiet)
         dfresult=i.df
         if dropnavalue:
             dfresult = dfresult.dropna()
-        try: 
+        try:
             dfresult=dfresult.set_index(Indicators.index_column_name)
         except TypeError:
             pass
