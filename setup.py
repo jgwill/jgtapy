@@ -4,8 +4,19 @@ jgtapy
 """
 
 from setuptools import find_packages, setup
+import re
+from pathlib import Path
 
-from jgtapy import __version__ as version
+def read_version():
+    """Read version from __init__.py without importing."""
+    init_file = Path(__file__).parent / "jgtapy" / "__init__.py"
+    content = init_file.read_text()
+    match = re.search(r'__version__\s*=\s*["\']([^"\']+)["\']', content)
+    if match:
+        return match.group(1)
+    return "0.0.0"
+
+version = read_version()
 
 INSTALL_REQUIRES = [
     'pandas>=0.25.1',
