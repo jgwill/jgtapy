@@ -18,5 +18,5 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://jgtapy.jgwill.com"
+"Homepage" = "https://docs.jgtapy.jgwill.com"
 "Bug Tracker" = "https://github.com/jgwill/jgtapy/issues"
